@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Realtime Chat</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <!-- join screen -->
+  <main id="joinScreen" class="join">
+    <form id="joinForm" class="card" autocomplete="off">
+      <h1>Realtime Chat</h1>
+      <p class="muted">Pick a name and a room. Open a second tab to chat with yourself.</p>
+
+      <label for="nameInput">Your name</label>
+      <input id="nameInput" maxlength="24" required placeholder="e.g. Luke" />
+
+      <label for="roomSelect">Room</label>
+      <select id="roomSelect"></select>
+      <input id="newRoomInput" maxlength="30" placeholder="New room name" hidden />
+
+      <p id="joinError" class="error" role="alert"></p>
+      <button id="joinButton" type="submit" disabled>Connecting…</button>
+    </form>
+  </main>
+
+  <!-- chat screen -->
+  <div id="chatScreen" class="chat" hidden>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <strong>Rooms</strong>
+        <button id="newRoomButton" class="link" type="button">+ New</button>
+      </div>
+      <ul id="roomList" class="room-list"></ul>
+
+      <div class="sidebar-header"><strong>In this room</strong></div>
+      <ul id="userList" class="user-list"></ul>
+
+      <div class="me">
+        Signed in as <strong id="meName"></strong>
+        <span id="connectionStatus" class="status online">online</span>
+      </div>
+    </aside>
+
+    <section class="conversation">
+      <header class="conversation-header">
+        <h2 id="roomTitle"></h2>
+      </header>
+
+      <ol id="messageList" class="messages" aria-live="polite"></ol>
+
+      <p id="typingIndicator" class="typing"></p>
+
+      <form id="messageForm" class="composer" autocomplete="off">
+        <input id="messageInput" maxlength="500" placeholder="Write a message" aria-label="Message" />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@8.0.17/dist/browser/signalr.min.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>
